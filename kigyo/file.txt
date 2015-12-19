@@ -1,0 +1,153 @@
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 17:26 ?        00:00:00 /sbin/init
+root         2     0  0 17:26 ?        00:00:00 [kthreadd]
+root         3     2  0 17:26 ?        00:00:00 [ksoftirqd/0]
+root         6     2  0 17:26 ?        00:00:00 [migration/0]
+root         7     2  0 17:26 ?        00:00:00 [watchdog/0]
+root         8     2  0 17:26 ?        00:00:01 [migration/1]
+root        10     2  0 17:26 ?        00:00:00 [ksoftirqd/1]
+root        11     2  0 17:26 ?        00:00:00 [kworker/0:1]
+root        12     2  0 17:26 ?        00:00:00 [watchdog/1]
+root        13     2  0 17:26 ?        00:00:00 [cpuset]
+root        14     2  0 17:26 ?        00:00:00 [khelper]
+root        15     2  0 17:26 ?        00:00:00 [kdevtmpfs]
+root        16     2  0 17:26 ?        00:00:00 [netns]
+root        17     2  0 17:26 ?        00:00:00 [kworker/u:1]
+root        18     2  0 17:26 ?        00:00:00 [sync_supers]
+root        19     2  0 17:26 ?        00:00:00 [bdi-default]
+root        20     2  0 17:26 ?        00:00:00 [kintegrityd]
+root        21     2  0 17:26 ?        00:00:00 [kblockd]
+root        22     2  0 17:26 ?        00:00:00 [ata_sff]
+root        23     2  0 17:26 ?        00:00:00 [khubd]
+root        24     2  0 17:26 ?        00:00:00 [md]
+root        25     2  0 17:26 ?        00:00:00 [kworker/1:1]
+root        26     2  0 17:26 ?        00:00:00 [khungtaskd]
+root        27     2  0 17:26 ?        00:00:00 [kswapd0]
+root        28     2  0 17:26 ?        00:00:00 [ksmd]
+root       643     2  0 17:26 ?        00:00:00 [kmemstick]
+root       652     1  0 17:26 ?        00:00:00 upstart-socket-bridge --daemon
+root       657     2  0 17:26 ?        00:00:00 [r592_io]
+root       707     2  0 17:26 ?        00:00:00 [cfg80211]
+root       716     2  0 17:26 ?        00:00:00 [rc0]
+root       718     2  0 17:26 ?        00:00:00 [r852]
+root       731     2  0 17:26 ?        00:00:00 [kpsmoused]
+root       758     2  0 17:26 ?        00:00:00 [wl_event_handle]
+syslog     861     1  0 17:26 ?        00:00:00 rsyslogd -c5
+102        867     1  0 17:26 ?        00:00:00 dbus-daemon --system --fork --activation=upstart
+root       879     1  0 17:26 ?        00:00:00 /usr/sbin/modem-manager
+root       880     1  0 17:26 ?        00:00:00 /usr/sbin/bluetoothd
+root       887     1  0 17:26 ?        00:00:00 NetworkManager
+root       892     1  0 17:26 ?        00:00:00 /usr/lib/policykit-1/polkitd --no-debug
+avahi      894     1  0 17:26 ?        00:00:00 avahi-daemon: running [jee-Studio-1735.local]
+avahi      897   894  0 17:26 ?        00:00:00 avahi-daemon: chroot helper
+root       998     1  0 17:26 ?        00:00:00 /usr/sbin/cupsd -F
+colord    1002     1  0 17:26 ?        00:00:00 /usr/lib/i386-linux-gnu/colord/colord
+root      1007     1  0 17:26 tty4     00:00:00 /sbin/getty -8 38400 tty4
+root      1016     1  0 17:26 tty5     00:00:00 /sbin/getty -8 38400 tty5
+root      1030     1  0 17:26 tty2     00:00:00 /sbin/getty -8 38400 tty2
+root      1033     1  0 17:26 tty3     00:00:00 /sbin/getty -8 38400 tty3
+root      1041     1  0 17:26 tty6     00:00:00 /sbin/getty -8 38400 tty6
+root      1079     1  0 17:26 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  1083  1079  0 17:26 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  1084  1079  0 17:26 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  1085  1079  0 17:26 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  1086  1079  0 17:26 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  1087  1079  0 17:26 ?        00:00:00 /usr/sbin/apache2 -k start
+root      1095     1  0 17:26 ?        00:00:00 acpid -c /etc/acpi/events -s /var/run/acpid.socket
+root      1098     1  0 17:26 ?        00:00:00 cron
+daemon    1104     1  0 17:26 ?        00:00:00 atd
+whoopsie  1108     1  0 17:26 ?        00:00:00 whoopsie
+root      1116     1  0 17:26 ?        00:00:00 lightdm
+root      1135     1  0 17:26 ?        00:00:00 /usr/sbin/irqbalance
+root      1137     2  0 17:26 ?        00:00:00 [hd-audio0]
+root      1151  1116  3 17:26 tty7     00:00:26 /usr/bin/X :0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch -background none
+mysql     1166     1  0 17:26 ?        00:00:00 /usr/sbin/mysqld
+root      1184     1  0 17:26 ?        00:00:00 /usr/sbin/console-kit-daemon --no-daemon
+root      1280     2  0 17:26 ?        00:00:00 [krfcommd]
+root      1281     2  0 17:26 ?        00:00:00 [hd-audio1]
+root      1436   887  0 17:26 ?        00:00:00 /sbin/dhclient -d -4 -sf /usr/lib/NetworkManager/nm-dhcp-client.action -pf /var/run/sendsigs.omit.d/network-manager.dhclient-eth0.pid -lf /var/lib/dhcp/dhclient-358122ef-720b-4cab-8f35-2ff488860bb7-eth0.lease -cf /var/run/nm-dhclient-eth0.conf eth0
+root      1467     1  0 17:26 tty1     00:00:00 /sbin/getty -8 38400 tty1
+root      1473     2  0 17:26 ?        00:00:00 [flush-8:0]
+nobody    1485   887  0 17:26 ?        00:00:00 /usr/sbin/dnsmasq --no-resolv --keep-in-foreground --no-hosts --bind-interfaces --pid-file=/var/run/sendsigs.omit.d/network-manager.dnsmasq.pid --listen-address=127.0.0.1 --conf-file=/var/run/nm-dns-dnsmasq.conf --cache-size=0 --proxy-dnssec --enable-dbus --conf-dir=/etc/NetworkManager/dnsmasq.d
+root      1661     1  0 17:26 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+root      1753     1  0 17:27 ?        00:00:00 /usr/lib/upower/upowerd
+root      1933  1116  0 17:27 ?        00:00:00 lightdm --session-child 12 19
+rtkit     1983     1  0 17:27 ?        00:00:00 /usr/lib/rtkit/rtkit-daemon
+jee       2112     1  0 17:31 ?        00:00:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+jee       2123  1933  0 17:31 ?        00:00:00 gnome-session --session=ubuntu
+jee       2166  2123  0 17:31 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/dbus-launch --exit-with-session gnome-session --session=ubuntu
+jee       2169     1  0 17:31 ?        00:00:00 /usr/bin/dbus-launch --exit-with-session gnome-session --session=ubuntu
+jee       2170     1  0 17:31 ?        00:00:02 //bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+jee       2174     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfsd
+jee       2176     1  0 17:31 ?        00:00:00 /usr/lib/gvfs//gvfs-fuse-daemon -f /home/jee/.gvfs
+jee       2185     1  0 17:31 ?        00:00:00 /usr/lib/i386-linux-gnu/gconf/gconfd-2
+jee       2192  2123  0 17:31 ?        00:00:01 /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+jee       2199  2123  0 17:31 ?        00:00:01 metacity
+jee       2208  2192  0 17:31 ?        00:00:00 syndaemon -i 2.0 -K -R -t
+jee       2213     1  0 17:31 ?        00:00:00 /usr/bin/pulseaudio --start --log-target=syslog
+jee       2214  2123  0 17:31 ?        00:00:01 unity-2d-panel
+jee       2215  2123  0 17:31 ?        00:00:04 unity-2d-shell
+jee       2221  2123  0 17:31 ?        00:00:00 /usr/lib/tracker/tracker-miner-fs
+jee       2222  2123  0 17:31 ?        00:00:00 /usr/lib/tracker/tracker-store
+jee       2224  2123  0 17:31 ?        00:00:00 bluetooth-applet
+jee       2229  2123  0 17:31 ?        00:00:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+jee       2230  2213  0 17:31 ?        00:00:00 /usr/lib/pulseaudio/pulse/gconf-helper
+jee       2234     1  0 17:31 ?        00:00:02 /usr/lib/bamf/bamfdaemon
+jee       2236  2123  0 17:31 ?        00:00:00 nm-applet
+jee       2243  2123  0 17:31 ?        00:00:00 /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
+jee       2245  2123  0 17:31 ?        00:00:00 /usr/bin/python /usr/bin/hp-systray
+jee       2246  2123  2 17:31 ?        00:00:09 nautilus -n
+jee       2260     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfs-gdu-volume-monitor
+root      2262     1  0 17:31 ?        00:00:00 /usr/lib/udisks/udisks-daemon
+root      2265  2262  0 17:31 ?        00:00:00 udisks-daemon: not polling any devices
+jee       2269     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+jee       2271     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+jee       2273     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+jee       2278  2245  0 17:31 ?        00:00:00 /usr/bin/python /usr/bin/hp-systray
+jee       2279  2278  0 17:31 ?        00:00:00 /usr/bin/python /usr/bin/hp-systray
+jee       2281     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.2 /org/gtk/gvfs/exec_spaw/0
+jee       2286     1  0 17:31 ?        00:00:00 /usr/lib/dconf/dconf-service
+jee       2294     1  0 17:31 ?        00:00:02 /usr/lib/unity/unity-panel-service
+jee       2302     1  0 17:31 ?        00:00:00 /usr/lib/indicator-application/indicator-application-service
+jee       2304     1  0 17:31 ?        00:00:00 /usr/lib/indicator-sound/indicator-sound-service
+jee       2306     1  0 17:31 ?        00:00:00 /usr/lib/indicator-printers/indicator-printers-service
+jee       2307     1  0 17:31 ?        00:00:00 /usr/lib/indicator-session/indicator-session-service
+jee       2309     1  0 17:31 ?        00:00:00 /usr/lib/indicator-messages/indicator-messages-service
+jee       2312     1  0 17:31 ?        00:00:00 /usr/lib/indicator-datetime/indicator-datetime-service
+jee       2342     1  0 17:31 ?        00:00:00 /usr/lib/geoclue/geoclue-master
+jee       2345     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfsd-burn --spawner :1.2 /org/gtk/gvfs/exec_spaw/1
+jee       2366     1  0 17:31 ?        00:00:00 /usr/lib/ubuntu-geoip/ubuntu-geoip-provider
+jee       2375     1  0 17:31 ?        00:00:00 /usr/lib/gnome-online-accounts/goa-daemon
+jee       2386     1  0 17:31 ?        00:00:00 /usr/lib/gvfs/gvfsd-metadata
+jee       2405     1  0 17:31 ?        00:00:01 /usr/lib/indicator-appmenu/hud-service
+jee       2411     1  0 17:31 ?        00:00:00 /usr/lib/unity-lens-files/unity-files-daemon
+jee       2412     1  0 17:31 ?        00:00:00 /usr/lib/unity-lens-music/unity-music-daemon
+jee       2413     1  0 17:31 ?        00:00:00 /usr/lib/unity-lens-applications/unity-applications-daemon
+jee       2414     1  0 17:31 ?        00:00:00 /usr/bin/python /usr/lib/unity-lens-video/unity-lens-video
+jee       2449     1  0 17:31 ?        00:00:00 /usr/bin/zeitgeist-daemon
+jee       2464     1  0 17:31 ?        00:00:00 /usr/lib/zeitgeist/zeitgeist-fts
+jee       2466     1  0 17:31 ?        00:00:00 zeitgeist-datahub
+jee       2471  2464  0 17:31 ?        00:00:00 /bin/cat
+jee       2487     1  0 17:31 ?        00:00:00 /usr/lib/unity-lens-music/unity-musicstore-daemon
+jee       2488     1  0 17:31 ?        00:00:00 /usr/bin/python /usr/lib/unity-scope-video-remote/unity-scope-video-remote
+jee       2515  2123  0 17:31 ?        00:00:00 /usr/lib/gnome-disk-utility/gdu-notification-daemon
+jee       2527  2123  0 17:31 ?        00:00:00 telepathy-indicator
+jee       2533     1  0 17:31 ?        00:00:00 /usr/lib/telepathy/mission-control-5
+jee       2543  2123  0 17:32 ?        00:00:00 gnome-screensaver
+jee       2556  2123  0 17:32 ?        00:00:00 /usr/lib/evolution/3.2/evolution-alarm-notify
+jee       2562     1  0 17:32 ?        00:00:00 /usr/lib/evolution/e-calendar-factory
+jee       2569     1  0 17:32 ?        00:00:00 /usr/lib/evolution/e-addressbook-factory
+jee       2581  2123  3 17:32 ?        00:00:14 psensor
+jee       2601     1  0 17:32 ?        00:00:01 /usr/bin/python /usr/lib/ubuntuone-client/ubuntuone-syncdaemon
+jee       2609     1  1 17:32 ?        00:00:06 gnome-terminal
+jee       2621  2609  0 17:32 ?        00:00:00 gnome-pty-helper
+jee       2622  2609  0 17:32 pts/0    00:00:00 bash
+root      2638     2  0 17:32 ?        00:00:00 [kworker/0:0]
+jee       2684     1  0 17:32 ?        00:00:00 /usr/lib/notify-osd/notify-osd
+jee       2691  2123  0 17:32 ?        00:00:00 update-notifier
+root      2702     1  0 17:32 ?        00:00:00 /usr/bin/python /usr/lib/system-service/system-service-d
+jee       2722  2123  0 17:33 ?        00:00:00 /usr/lib/deja-dup/deja-dup/deja-dup-monitor
+root      2764     2  0 17:37 ?        00:00:00 [kworker/0:2]
+jee       2766     1  5 17:37 ?        00:00:06 /usr/lib/firefox/firefox
+jee       2789     1  0 17:37 ?        00:00:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+jee       2922  2622  0 17:39 pts/0    00:00:00 ps -ef

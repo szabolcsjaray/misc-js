@@ -1,0 +1,69 @@
+<html>
+<body>
+<canvas id="canvas1" width="400", height="700">
+
+</canvas>
+
+<script type="text/javascript">
+element = document.getElementById("canvas1");
+c = element.getContext("2d");
+
+// read the width and height of the canvas
+width = element.width;
+height = element.height;
+
+var r = 100;
+var sr = r*Math.sqrt(2);
+
+var xc = Math.round(width/2);
+var yc = 200;
+var valto = true;
+
+for(r=100;r>10;r-=3) {
+    sr = r*Math.sqrt(2);
+    yc++;
+    if (valto) {
+        c.fillStyle = "red";
+    } else {
+        c.fillStyle = "pink";
+    }
+    valto = !valto;
+    sziv();
+}
+
+yc = 550;
+for(r=100;r>10;r-=4) {
+    sr = r*Math.sqrt(2);
+    yc++;
+    if (valto) {
+        c.fillStyle = "red";
+    } else {
+        c.fillStyle = "pink";
+    }
+    valto = !valto;
+        sziv();
+}
+
+function sziv() {
+c.beginPath();
+c.moveTo(xc-sr, yc);
+c.lineTo(xc, yc+sr);
+c.lineTo(xc+sr, yc);
+c.fill();
+c.stroke();
+
+
+c.beginPath();
+c.arc(xc-sr/2, yc-sr/2, r, 0.75*Math.PI, 1.75 * Math.PI, false);
+c.fill();
+c.stroke();
+
+
+c.beginPath();
+c.arc(xc+sr/2, yc-sr/2, r, 1.25*Math.PI, 2.25 * Math.PI, false);
+c.fill();
+c.stroke();
+}
+</script>
+</body>
+</html>

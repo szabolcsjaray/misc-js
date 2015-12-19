@@ -1,0 +1,24 @@
+body{
+	background:#C0C0C0;
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+div#main {
+	width: 700px;
+	height: 700px;
+	position: relative;
+	margin: 0 auto 0 auto;
+	margin-left: auto;
+	margin-right: auto;
+	top:20px;
+	text-align:left;
+	background-color: #4080C0;
+	background-image: url('nuke.jpg');
+	background-size:700px 700px;
+	background-repeat:no-repeat;
+}
+.explosion {
+	opacity:0.5;
+}

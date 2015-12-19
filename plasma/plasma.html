@@ -1,0 +1,197 @@
+<html>
+<body>
+<canvas id="canvas1" width="400", height="400">
+Random Canvas
+</canvas>
+
+<script type="text/javascript">
+
+var imData;
+
+function setPixelF(x, y, p) {
+    index = (x + y * imData.width) * 4;
+    imData.data[index+0] = p.R;
+    imData.data[index+1] = p.G;
+    imData.data[index+2] = p.B;
+    imData.data[index+3] = p.A;
+}
+
+function setPixel(imageData, x, y, p) {
+    index = (x + y * imageData.width) * 4;
+    imageData.data[index+0] = p.R;
+    imageData.data[index+1] = p.G;
+    imageData.data[index+2] = p.B;
+    imageData.data[index+3] = p.A;
+}
+function getPixel(imageData, x, y) {
+    index = (x + y * imageData.width) * 4;
+    var p;
+    p = new Object();
+    p.R = imageData.data[index+0];
+    p.G = imageData.data[index+1];
+    p.B = imageData.data[index+2];
+    p.A = imageData.data[index+3];
+    return p;
+}
+function getPixelF( x, y) {
+    index = (x + y * imData.width) * 4;
+    var p;
+    p = new Object();
+    p.R = imData.data[index+0];
+    p.G = imData.data[index+1];
+    p.B = imData.data[index+2];
+    p.A = imData.data[index+3];
+    return p;
+}
+
+function average(p1, p2,d) {
+    var pa = new Object();
+    pa.R = Math.round((p1.R + p2.R)/2)+(Math.random() * d -d/2 | 0);
+    pa.G = Math.round((p1.G + p2.G)/2)+(Math.random() * d -d/2| 0);    
+    pa.B = Math.round((p1.B + p2.B)/2)+(Math.random() * d -d/2| 0);
+    pa.A = 255;
+    return pa;    
+}
+
+function drawPlasma(x0,y0, x1, y1) {
+    var p00 = getPixelF(x0,y0);
+    var p01 = getPixelF(x0,y1);
+    var p10 = getPixelF(x1,y0);
+    var p11 = getPixelF(x1,y1);
+    var d = x1-x0+y1-y0;
+    
+    if (p00.A==0) {
+        p00 = randomCol();
+        setPixelF(x0,y0,p00);
+    }
+    if (p01.A==0) {
+        p01 = randomCol();
+        setPixelF(x0,y1,p01);
+    }
+    if (p10.A==0) {
+        p10 = randomCol();
+        setPixelF(x1,y0,p10);
+    }
+    if (p11.A==0) {
+        p11 = randomCol();
+        setPixelF(x1,y1,p11);
+    }
+    if (x1-x0>1) {
+        if (y1-y0>1) {
+            var xk = Math.round((x0+x1)/2);
+            var yk = Math.round((y0+y1)/2);
+            
+            pa0 = getPixelF(xk,y0);
+            if (pa0.A==0) {
+                pa0 = average(p00, p10,d);
+                setPixelF(xk, y0, pa0);
+            }
+                
+            pa1 = getPixelF(xk,y1);
+            if (pa1.A==0) {
+                pa1 = average(p01, p11,d);
+                setPixelF(xk, y1, pa1);
+            }
+            p0a = getPixelF(x0,yk);
+            if (p0a.A==0) {
+                p0a = average(p00, p01,d);
+                setPixelF(x0, yk, p0a);
+            }
+            p1a = getPixelF(x1,yk);
+            if (p1a.A==0) {
+                p1a = average(p10, p11,d);
+                setPixelF(x1, yk, p1a);
+            }
+            paax = average(pa0, pa1,d);
+            paay = average(p0a, p1a,d);
+            paa = average(paax, paay,0);
+            setPixelF(xk, yk, paa);
+            drawPlasma(x0, y0, xk, yk);
+            drawPlasma(xk, y0, x1, yk);
+            drawPlasma(x0, yk, xk, y1);
+            drawPlasma(xk, yk, x1, y1);
+        } else {
+            var xk = Math.round((x0+x1)/2);
+            pa0 = getPixelF(xk,y0);
+            if (pa0.A==0) {
+                pa0 = average(p00, p10,d);
+                setPixelF(xk, y0, pa0);
+            }
+                
+            pa1 = getPixelF(xk,y1);
+            if (pa1.A==0) {
+                pa1 = average(p01, p11,d);
+                setPixelF(xk, y1, pa1);
+            }            
+            drawPlasma(x0, y0, xk, y1);
+            drawPlasma(xk, y0, x1, y1);
+        }
+    } else {
+        if (y1-y0>1) {
+            var yk = Math.round((y0+y1)/2);
+            p0a = getPixelF(x0,yk);
+            if (p0a.A==0) {
+                p0a = average(p00, p01);
+                setPixelF(x0, yk, p0a);
+            }
+            p1a = getPixelF(x1,yk);
+            if (p1a.A==0) {
+                p1a = average(p10, p11);
+                setPixelF(x1, yk, p1a);
+            }
+            drawPlasma(x0, y0, x1, yk);
+            drawPlasma(x0, yk, x1, y1);
+            
+        }
+    }
+}
+
+function pixel(r,g,b,a) {
+    var p = new Object();
+    p.R = r;
+    p.G = g;
+    p.B = b;
+    p.A = a;
+    return p;
+}
+
+function randomCol() {
+    var p = new Object();
+    p.R = Math.random() * 256 | 0;
+    p.G = Math.random() * 256 | 0;
+    p.B = Math.random() * 256 | 0;
+    p.A = 255
+    return p;
+}
+
+function emptyImg() {
+    var width = imData.width;
+    var height = imData.height;
+    var ePixel = pixel(255,255,255,0);
+    var i, j;
+    for(xi = 0;xi<width;xi++) {
+        for(yi = 0;yi<height;yi++) {
+            setPixelF(xi,yi,ePixel);
+        }
+    }
+}
+
+element = document.getElementById("canvas1");
+c = element.getContext("2d");
+
+// read the width and height of the canvas
+width = element.width;
+height = element.height;
+
+// create a new pixel array
+imageData = c.createImageData(width, height);
+imData = imageData;
+emptyImg();
+drawPlasma(20,20,150,160);
+
+// copy the image data back onto the canvas
+c.putImageData(imageData, 0, 0); // at coords 0,0
+
+</script>
+</body>
+</html>

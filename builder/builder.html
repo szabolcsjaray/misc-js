@@ -1,0 +1,191 @@
+<html>
+<body>
+<canvas id="canvas1" width="700", height="700">
+Random Canvas
+</canvas>
+
+<script type="text/javascript">
+
+function Cubes() {
+    this.firstCube = new Cube(0,0,0);
+    this.lastCube = this.firstCube;
+}
+
+
+function Cube(x,y,z) {
+    this.a = new Array();
+    a[0] = x;
+    a[1] = y;
+    a[2] = z;
+    this.t = new Array();
+    this.prev = 0;
+    this.next = 0;
+}
+
+Cube.prototype.transform=function(cp) {
+    t[0] = a[0]-cp[0];
+    t[1] = a[1]-cp[1];
+    t[2] = a[2]-cp[2];
+}
+
+
+var imData;
+var R = 500.0;
+var widthh, heighth;
+var cp = new Array();
+cp[0] = 0.4;
+cp[1] = 0.0;
+cp[2] = 0.0;
+var d = 0.3;
+var cubes = new Cubes();
+
+function transform(sp, cp) {
+    var rp = new Array();
+    for(i = 0;i<3;i++) {
+        rp[i] = sp[i]-cp[i];
+    }
+    var pp = new Array();
+    var d = Math.sqrt(rp[0]*rp[0] +rp[1]*rp[1] + rp[2]*rp[2]);
+    pp[0] = rp[0]/d*R + widthh;
+    pp[1] = rp[1]/d*R + heighth;
+    //console.log("TX:" + pp[0] + ", TY:" + pp[1]);
+    return pp;
+}
+
+
+function drawCube(k) {
+    
+    p000 = transform(k, cp);
+    k[0] += d;
+    p100 = transform(k, cp);
+    k[1] += d;
+    p110 = transform(k, cp);
+    k[0] -= d;
+    p010 = transform(k, cp);
+    
+    k[2] += d;
+    
+    p011 = transform(k, cp);
+    k[1] -= d;
+    p001 = transform(k, cp);
+    k[0] += d;
+    p101 = transform(k, cp);
+    k[1] += d;
+    p111 = transform(k, cp);
+
+    c.moveTo(p000[0], p000[1]);
+    c.lineTo(p100[0], p100[1]);
+    c.lineTo(p110[0], p110[1]);
+    c.lineTo(p010[0], p010[1]);
+    c.lineTo(p000[0], p000[1]);
+    
+    c.moveTo(p010[0], p010[1]);
+    c.lineTo(p011[0], p011[1]);
+    c.lineTo(p001[0], p001[1]);
+    c.lineTo(p101[0], p101[1]);
+    c.lineTo(p111[0], p111[1]);
+    c.lineTo(p011[0], p011[1]);
+    c.moveTo(p001[0], p001[1]);
+    c.lineTo(p000[0], p000[1]);
+    c.moveTo(p101[0], p101[1]);
+    c.lineTo(p100[0], p100[1]);
+    
+    c.moveTo(p111[0], p111[1]);
+    c.lineTo(p110[0], p110[1]);
+    
+    c.stroke();
+    c.fillStyle="#A8C8FF";
+    
+
+    if (p100[0]<p101[0]) {
+		c.beginPath();
+		c.moveTo(p101[0], p101[1]);
+		c.lineTo(p100[0], p100[1]);
+		c.lineTo(p110[0], p110[1]);
+		c.lineTo(p111[0], p111[1]);
+		c.closePath();
+		c.fill();
+		c.stroke();
+    }
+    if (p100[1]>p101[1]) {
+		c.beginPath();
+		c.moveTo(p101[0], p101[1]);
+		c.lineTo(p100[0], p100[1]);
+		c.lineTo(p000[0], p000[1]);
+		c.lineTo(p001[0], p001[1]);
+		c.closePath();
+		c.fillStyle="#A8F8FF";    c.fill();    c.fillStyle="#A8C8FF";
+		c.stroke();
+    }
+    if (p111[1]>p110[1]) {
+    
+		c.beginPath();
+		c.moveTo(p111[0], p111[1]);
+		c.lineTo(p110[0], p110[1]);
+		c.lineTo(p010[0], p010[1]);
+		c.lineTo(p011[0], p011[1]);
+		c.closePath();
+		c.fillStyle="#A8F8FF";    c.fill();    c.fillStyle="#A8C8FF";
+		c.stroke(); 
+    }   
+    
+    if (p000[0]>p001[0]) {
+		c.beginPath();
+		c.moveTo(p000[0], p000[1]);
+		c.lineTo(p001[0], p001[1]);
+		c.lineTo(p011[0], p011[1]);
+		c.lineTo(p010[0], p010[1]);
+		c.closePath();
+		c.fill();
+		c.stroke();
+    }
+    
+    c.beginPath();
+    c.moveTo(p000[0], p000[1]);
+    c.lineTo(p100[0], p100[1]);
+    c.lineTo(p110[0], p110[1]);
+    c.lineTo(p010[0], p010[1]);
+    c.closePath();
+    c.fill();
+    c.stroke();
+    
+}
+
+Cubes.prototype.addCube = function(k) {
+    newCube = new Cube(k[0], k[1], k[2]);
+    lastCube.next = newCube;
+    newCube.prev = lastCube;
+}
+
+element = document.getElementById("canvas1");
+c = element.getContext("2d");
+
+widthh = element.width/2;
+heighth = element.height/2;
+
+var k = new Array();
+var a = 0;
+for(y=-2.2;y<0;y+=d) {
+for (x=-1.4;x<0;x+=d) {
+   if (a==0) {
+       k[0] = x;
+       k[1] = y;
+       k[2] = 4.0;
+       cubes.addCube(k);
+       drawCube(k);
+   }
+   a=(a+1)%2;
+}
+}
+
+cubes.drawCubes();
+
+
+
+
+console.log("Done.");
+
+
+</script>
+</body>
+</html>

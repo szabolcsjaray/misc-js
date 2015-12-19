@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="jatek.css">
+	<script src="minmax.js"></script>	
+	<title>Minmax</title>
+</head>
+<body>
+	<div id="main"> 
+		<div id="go" style="background-color:#AADDDD" onclick="minimax(4, true);">Go!</div>
+<table border="1">
+<tr>
+	<td><div class="mezo" id="col"> </div></td>
+</table>
+	
+<table border="1">
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c11"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c21"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c31"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c41"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c51"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c61"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c71"> </div></td>
+</tr>
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c12"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c22"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c32"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c42"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c52"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c62"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c72"> </div></td>
+</tr>
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c13"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c23"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c33"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c43"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c53"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c63"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c73"> </div></td>
+</tr>
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c14"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c24"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c34"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c44"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c54"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c64"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c74"> </div></td>
+</tr>
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c15"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c25"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c35"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c45"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c55"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c65"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c75"> </div></td>
+</tr>
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c16"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c26"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c36"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c46"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c56"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c66"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c76"> </div></td>
+</tr>
+<tr>
+	<td><div class="mezo" onclick="change(this);"id="c17"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c27"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c37"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c47"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c57"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c67"> </div></td>
+	<td><div class="mezo" onclick="change(this);"id="c77"> </div></td>
+</tr>
+</table>
+	
+	</div>
+	<script type="text/javascript">
+	<!--
+	
+	var mezok = new Array();
+	var i;
+	var lastId = "x";
+	var lastCol = 1;
+	var szinek = new Array();
+	var steps = new Array();
+	var stepNum = 0;
+	var x, y, pStepNum = 0;
+
+	
+	
+	szinek[0]="#FFFFFF";
+	szinek[1]="blue";
+	szinek[2]="green";
+	document.getElementById("col").style.backgroundColor = szinek[lastCol];
+	for(i=1;i<8;i++) {
+		for(j=1;j<8;j++) {
+			mezok[i*10+j] = 0;
+		}
+	}
+	
+	function change(el) {
+		var mid;
+//		alert(el.id + ":" + mezok[el.id]);
+	    mid = el.id.substring( 1);
+		if (el.id==lastId) {
+			mezok[mid] = (mezok[mid]+1)%3;
+			lastCol = mezok[mid];			
+			document.getElementById("col").style.backgroundColor = szinek[lastCol];
+		} else {
+			mezok[mid] = lastCol;
+		}
+		el.style.backgroundColor = szinek[mezok[mid]];
+		lastId = el.id;
+	}
+	
+	function getPossibleSteps(pSteps, humanUser) {
+		var my = 1;
+		if (!humanUser) {
+			my = 2;
+		}
+		console.log("my:" + my + "\n");
+		for(x=1;x<8;x++) 
+			for(y=1;y<8;y++) {
+				if (mezok[x*10+y]==0) {
+					if ((mezok[x*10+y-10]==my) ||
+					    (mezok[x*10+y+10]==my) ||
+					    (mezok[x*10+y-11]==my) ||
+					    (mezok[x*10+y+11]==my) ||
+					    (mezok[x*10+y-9]==my) ||
+					    (mezok[x*10+y+9]==my) ||
+					    (mezok[x*10+y-1]==my) ||
+					    (mezok[x*10+y+1]==my)) {
+					    pSteps[++pStepNum] = "n"+(x*10+y);
+					}
+				}
+			}
+		console.log("grows: "+pStepNum+", jumps..." + my + "\n");
+			
+		for(x=1;x<8;x++) 
+			for(y=1;y<8;y++) {
+				if (mezok[x*10+y]==my) {
+					if (mezok[x*10+y-20]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-20);
+					}
+					if (mezok[x*10+y-21]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-21);
+					}
+					if (mezok[x*10+y-22]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-22);
+					}
+					if (mezok[x*10+y-19]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-19);
+					}
+					if (mezok[x*10+y-18]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-18);
+					}
+					
+					if (mezok[x*10+y-2]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-2);
+					}
+					if (mezok[x*10+y-12]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-12);
+					}
+					if (mezok[x*10+y-8]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y-8);
+					}
+					
+					if (mezok[x*10+y+2]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+2);
+					}
+					if (mezok[x*10+y+12]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+12);
+					}
+					if (mezok[x*10+y+8]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+8);
+					}
+
+					if (mezok[x*10+y+20]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+20);
+					}
+					if (mezok[x*10+y+21]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+21);
+					}
+					if (mezok[x*10+y+22]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+22);
+					}
+					if (mezok[x*10+y+19]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+19);
+					}
+					if (mezok[x*10+y+18]==0) {
+						pSteps[++pStepNum] = "u"+(x*10+y)+""+(x*10+y+18);
+					}
+				}
+			}
+		console.log("after jumps: "+pStepNum + "\n");			
+		
+		for(x=1;x<pStepNum;x++) {
+			console.log(""+pSteps[x] + "\n");
+		}
+	}
+	
+	function convert(mid, from, to, converted) {
+		if (mezok[mid-11]==from) {
+			mezok[mid-11] = to;
+			converted.push(mid-11);
+		}
+		if (mezok[mid-10]==from) {
+			mezok[mid-10] = to;
+			converted.push(mid-10);
+		}
+		if (mezok[mid-9]==from) {
+			mezok[mid-9] = to;
+			converted.push(mid-9);
+		}
+		if (mezok[mid-1]==from) {
+			mezok[mid-1] = to;
+			converted.push(mid-1);
+		}
+		if (mezok[mid+1]==from) {
+			mezok[mid+1] = to;
+			converted.push(mid+1);
+		}
+		if (mezok[mid+9]==from) {
+			mezok[mid+9] = to;
+			converted.push(mid+9);
+		}
+		if (mezok[mid+10]==from) {
+			mezok[mid+10] = to;
+			converted.push(mid+10);
+		}
+		if (mezok[mid+11]==from) {
+			mezok[mid+11] = to;
+			converted.push(mid+11);
+		}
+		var arrayLength = converted.length;
+		for (var i = 0; i < arrayLength; i++) {
+			console.log("converting: c" + converted[i]);
+       		document.getElementById("c"+converted[i]).style.backgroundColor = szinek[to];
+       	}
+		
+	}
+	function convertBack(mid, to, from, converted) {
+		var arrayLength = converted.length;
+		for (var i = 0; i < arrayLength; i++) {
+    		mezok[converted[i]] = from;
+       		document.getElementById("c"+converted[i]).style.backgroundColor = szinek[from];
+    	}
+	}
+		
+function minimax(depth, maximizingPlayer) {
+	console.log(depth+", player:" + maximizingPlayer + "\n");
+    if (depth==0) { // || terminalState()) {
+        return 0; //heuristicValue();
+    }
+    var possibleSteps = new Array();
+    var stepNum = pStepNum;
+    var i;
+    getPossibleSteps(possibleSteps, maximizingPlayer);
+    stepNum = pStepNum;
+    pStepNum = 0;
+    alert("steps:" + stepNum);
+    
+    if (maximizingPlayer) {
+	    console.log("maximizingPlayer.\n");
+        var bestValue=-100000;
+        var val;
+        for (i=1;i<=stepNum;i++) {
+            console.log("pstep:" + i + "\n");
+        	var converted = new Array();
+        	var mid;
+        	// make step no. i
+        	if (possibleSteps[i].charAt(0)=="n") {
+        		mid = possibleSteps[i].substring(1);
+        		mezok[mid] = 1;
+        		document.getElementById("c"+mid).style.backgroundColor = szinek[1];
+        		convert(mid, 2, 1, converted);
+        	} else {
+        		mid = possibleSteps[i].substring(3,5);
+        		document.getElementById("c"+possibleSteps[i].substring(1,3)).style.backgroundColor = szinek[0];
+        		mezok[possibleSteps[i].substring(1,3)] = 0;
+        		mezok[mid] = 1;
+        		document.getElementById("c"+mid).style.backgroundColor = szinek[1];
+        		convert(mid, 2, 1, converted);
+        	}
+            val = minimax(depth-1, false);
+            bestValue= Math.max(bestValue, val);
+            convertBack(mid, 2, 1, converted);
+            
+            if (possibleSteps[i].charAt(0)=="n") {
+                mezok[mid] = 0;
+                document.getElementById("c"+mid).style.backgroundColor = szinek[0];
+            } else {
+                mezok[mid] = 0;
+                document.getElementById("c"+mid).style.backgroundColor = szinek[0];
+        		mezok[possibleSteps[i].substring(1,3)] = 1;
+                document.getElementById("c"+possibleSteps[i].substring(1,3)).style.backgroundColor = szinek[1];
+            }
+           
+        }
+        return bestValue;
+    } else {
+	    console.log("Not maximizingPlayer.\n");
+        var bestValue=100000;
+        var val;
+        for (i=1;i<=stepNum;i++) {
+            console.log("X pstep:" + i + "\n");
+        	var converted = new Array();
+        	var mid;            console.log("pstep:" + i + "\n");
+        	// make step no. i
+        	if (possibleSteps[i].charAt(0)=="n") {
+        		mid = possibleSteps[i].substring(1);
+        		mezok[mid] = 2;
+        		document.getElementById("c"+mid).style.backgroundColor = szinek[2];
+        		convert(mid, 1, 2, converted);
+        	} else {
+        		mid = possibleSteps[i].substring(3,5);
+        		mezok[possibleSteps[i].substring(1,3)] = 0;
+        		document.getElementById("c"+possibleSteps[i].substring(1,3)).style.backgroundColor = szinek[0];
+        		mezok[mid] = 2;
+        		document.getElementById("c"+mid).style.backgroundColor = szinek[2];
+        		convert(mid, 1, 2, converted);
+        	}
+            val = minimax(depth-1, true);
+            bestValue=Math.min(bestValue, val);
+            convertBack(mid, 1, 2, converted);
+            
+            if (possibleSteps[i].charAt(0)=="n") {
+                mezok[mid] = 0;
+                document.getElementById("c"+mid).style.backgroundColor = szinek[0];
+            } else {
+                mezok[mid] = 0;
+                document.getElementById("c"+mid).style.backgroundColor = szinek[0];
+        		mezok[possibleSteps[i].substring(1,3)] = 2;
+                document.getElementById("c"+possibleSteps[i].substring(1,3)).style.backgroundColor = szinek[2];
+            }
+        }
+        return bestValue;
+    }
+}
+
+/* Initial call for maximizing player 
+minimax(origin, depth, TRUE);*/		
+	-->
+	</script>
+</body>
+<html>

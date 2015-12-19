@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+background-color:black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="200"></canvas>
+    <script>
+
+function drawPlanet(x, y, r, col1, col2, ctxP) {
+	var xg = Math.round(x+(r/7));
+	var yg = Math.round(y-(r/5));
+	var grd=ctxP.createRadialGradient(xg,yg,5,xg+5,yg,r);
+	grd.addColorStop(1,col1);
+	grd.addColorStop(0,col2);
+
+	ctxP.fillStyle=grd;
+	ctxP.arc(x, y, r, 0, 2*Math.PI, false);
+	ctxP.fill();
+}
+
+
+
+      window.requestAnimFrame = (function(callback) {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+        function(callback) {
+          window.setTimeout(callback, 100000 );
+        };
+      })();
+
+      function animate() {
+        var canvas = document.getElementById('myCanvas');
+        var context = canvas.getContext('2d');
+
+        // update
+
+        // clear
+        context.clearRect(0, 0, canvas.width, canvas.height);
+
+        // draw stuff
+var c=document.getElementById("myCanvas");
+var ctx=c.getContext("2d");
+drawPlanet(400,300,100, "#200010", "#FFAFAF", ctx);
+var c2=document.getElementById("myCanvas2");
+var ctx2=c2.getContext("2d");
+drawPlanet(100,100,20, "#002000", "#AFFFAF", ctx2);
+var c3=document.getElementById("myCanvas3");
+var ctx3=c3.getContext("2d");
+drawPlanet(100,100,30,  "#000232","#2020e0", ctx3);
+context.fillStyle="#FFFFFF";
+var xs, ys;
+for(var i=0;i<3000;i++) {
+	xs = Math.floor((Math.random()*canvas.offsetWidth)); 
+	ys = Math.floor((Math.random()*canvas.offsetHeight)); 
+	if (Math.random()>0.9) {
+	context.fillRect(xs,ys, 2,2); } else {
+	context.fillRect(xs,ys, 1,1); }
+}
+context.fillRect(391,261, 10,10);
+
+        // request new frame
+/*        requestAnimFrame(function() {
+          animate();
+        });*/
+      }
+      animate();
+
+    </script>
+  </body>
+</html>
+
