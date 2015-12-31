@@ -5,8 +5,28 @@
 <canvas id="myCanvas" width="800" height="600" style="position:absolute;top:0px;left:0px;"></canvas> 
 <canvas id="myCanvas2" width="400" height="300" style="position:absolute;top:200px;left:260px;"></canvas> 
 <canvas id="myCanvas3" width="400" height="300" style="position:absolute;top:210px;left:530px;"></canvas> 
-<img src="stella.png" style="position:absolute;top:210px;left:530px;width:20%;height:20%;"/>
+
 <script language="javascript">
+
+
+function drawEllipse(ctx, x,y, xr, yr, start, end, step) {
+    var i = start;
+    var xp = x + xr*Math.cos(i);
+    var yp = y + yr*Math.sin(i);
+    ctx.beginPath();
+    ctx.moveTo(xp,yp);
+    var xw, yw;
+    i+=step;
+    while (i<end) {
+         xw = xp;
+         yw = yp;
+         xp = x + xr*Math.cos(i);
+         yp = y + yr*Math.sin(i);
+         ctx.lineTo(xp, yp);
+         i += step;
+    }
+    ctx.stroke();
+}
 
 function drawPlanet(x, y, r, col1, col2, ctxP) {
 	var xg = Math.round(x+(r/7));
@@ -18,6 +38,15 @@ function drawPlanet(x, y, r, col1, col2, ctxP) {
 	ctxP.fillStyle=grd;
 	ctxP.arc(x, y, r, 0, 2*Math.PI, false);
 	ctxP.fill();
+	
+
+    ctxP.strokeStyle="#ffffff";
+    ctxP.lineWidth=1;
+    var xr;
+    for (xr=0;xr<=Math.PI;xr+=0.2) {
+        drawEllipse(ctxP, x, y, Math.cos(xr)*r, r, Math.PI/2.0, Math.PI*1.5+0.1, 0.1);
+    }
+
 }
 
 

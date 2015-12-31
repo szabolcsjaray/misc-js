@@ -3,7 +3,6 @@ function Palya(num, divEl) {
 	this.divEl = divEl;
 	this.stars = new Array();
 	var inst = this;
-	this.
 	this.start = function() {
 		this.adminTiming=setInterval(function() {inst.admin();},100);
 	};

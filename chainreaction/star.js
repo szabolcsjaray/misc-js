@@ -82,7 +82,7 @@ Star.prototype.mouseup = function(event) {
 Star.prototype.mouseover = function(event) {
 	if (this.star.state==CHARGE) this.star.state=IDLE;
 	this.star.cont.fillStyle="#000000";
-	this.star.cont.lineWisth = 2;
+	this.star.cont.lineWidth = 2;
 	this.star.cont.beginPath();
 	this.star.cont.arc(this.star.tipus.starRadius, this.star.tipus.starRadius, this.star.tipus.starRadius-1, 0, 2 * Math.PI, false);
 	this.star.cont.stroke();
