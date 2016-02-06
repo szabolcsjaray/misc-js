@@ -38,7 +38,7 @@ Star.prototype.drawExplosion = function () {
 Star.prototype.create = function (divEl, palya, charge) {
 	//this.createExplosionCanvas(divEl, palya);
 	this.charge = charge;
-	this.starCanvas = createCanvas(divEl, this.x-this.tipus.starRadius, this.y-this.tipus.starRadius, this.width);
+	this.starCanvas = Util.createCanvas(divEl, this.x-this.tipus.starRadius, this.y-this.tipus.starRadius, this.width);
 	this.starCanvas.star = this;
 //	this.starCanvas.onmousedown = this.mousedown;
 	//this.starCanvas.onmouseup = function(evemt) {alert("up");};
@@ -92,7 +92,7 @@ Star.prototype.mouseout = function(event) {
 	if (this.star.state==CHARGE) this.star.state=IDLE;
 };
 Star.prototype.createExplosionCanvas = function(divEl, palya) {
-	this.explosionCanvas = createCanvas(divEl, this.x-this.tipus.explRadius, this.y-this.tipus.explRadius, this.tipus.explRadius*2);
+	this.explosionCanvas = Util.createCanvas(divEl, this.x-this.tipus.explRadius, this.y-this.tipus.explRadius, this.tipus.explRadius*2);
 	this.explosionCanvas.className = "explosion";
 	this.conExpl = this.explosionCanvas.getContext("2d");
 	/*this.conExpl.fillStyle   = '#CC5422'; 

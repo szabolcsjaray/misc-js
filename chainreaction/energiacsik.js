@@ -5,7 +5,7 @@ function EnergiaCsik(maximum, palya) {
 	this.palya = palya;
 	this.energia = maximum;
 	this.divEl = palya.divEl;
-	this.csikCanvas = createCanvas(this.divEl, 100, 600, CSIKHOSSZ+10);
+	this.csikCanvas = Util.createCanvas(this.divEl, 100, 600, CSIKHOSSZ+10);
 	this.cont = this.csikCanvas.getContext("2d");
 
   }
