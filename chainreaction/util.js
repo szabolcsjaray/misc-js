@@ -28,9 +28,9 @@ Util.drawEllipse = function(ctx, x,y, xr, yr, start, end, step) {
     }
     ctx.stroke();
 };
-Util.drawGlobus = function(ctx, x, y, r) {
+Util.drawGlobus = function(ctx, x, y, r, offset, step) {
     var xr;
-    for (xr=0;xr<=Math.PI;xr+=0.2) {
-        Util.drawEllipse(ctx, x, y, Math.cos(xr)*r, r, Math.PI/2.0, Math.PI*1.5+0.1, 0.1);
+    for (xr=offset;xr<=Math.PI;xr+=step) {
+        Util.drawEllipse(ctx, x, y, Math.cos(xr)*r, r, Math.PI/2.0, Math.PI*1.5+step/2, 0.1);
     }
 };

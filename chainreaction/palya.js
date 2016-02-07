@@ -7,20 +7,13 @@ function Palya(num, divEl) {
 		this.adminTiming=setInterval(function() {inst.admin();},100);
 	};
 	this.create = function() {
-        this.drawGlobusLinesPhases();
+	    this.globusLines = new GlobusLines(inst.divEl);
 		this.addStars();
 		console.log("palya num:" + num);
 		this.addEnergiaCsik(Palyak.Palyak[num].energy);
 		this.start();
 	};
 }
-Palya.prototype.drawGlobusLinesPhases = function() {
-    this.gCanvas = Util.createCanvas(this.divEl, 0, 0, 500);
-    this.gCanvasCtx = this.gCanvas.getContext("2d");
-    this.gCanvasCtx.lineWidth = 3;
-    this.gCanvasCtx.strokeStyle="#ffffff";
-    Util.drawGlobus(this.gCanvasCtx, 250, 250, 250);
-};
 Palya.prototype.addEnergiaCsik = function(maxEnergia) {
 	this.energiaCsik = new EnergiaCsik(maxEnergia, this);
 	this.energiaCsik.draw();

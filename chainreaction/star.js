@@ -14,6 +14,8 @@ function Star(x, y,tipus, palya) {
 	this.tipus = tipus;
 	this.palya = palya;
 	this.width = this.height = this.tipus.starRadius*2;
+	this.linesPhase = 0;
+	this.lastLinesPhase = 0;
 }
 
 Star.StarTypes = { "1":{col:"kek", starRadius:30, explRadius:80}, 
@@ -35,6 +37,19 @@ Star.prototype.drawExplosion = function () {
 	this.conExpl.arc(this.tipus.explRadius, this.tipus.explRadius, this.eRadius, 0, 2 * Math.PI, false);
 	this.conExpl.fill();
 };
+Star.prototype.createLineImages = function (divEl, palya) {
+    this.linesImg = new Array();
+    var i;
+    for(i=0;i<palya.globusLines.maxPhases;i++) {
+	    this.linesImg[i] = new Image(this.tipus.starRadius*2, this.tipus.starRadius*2);
+	    this.linesImg[i].src = this.palya.globusLines.getImage(i);
+	    this.linesImg[i].style.left = this.x-this.tipus.starRadius +"px";
+	    this.linesImg[i].style.top = this.y-this.tipus.starRadius + "px";
+	    this.linesImg[i].style.position = "absolute";
+	    this.linesImg[i].style.display = "block";
+        divEl.appendChild(this.linesImg[i]);
+    }
+};
 Star.prototype.create = function (divEl, palya, charge) {
 	//this.createExplosionCanvas(divEl, palya);
 	this.charge = charge;
@@ -43,6 +58,7 @@ Star.prototype.create = function (divEl, palya, charge) {
 //	this.starCanvas.onmousedown = this.mousedown;
 	//this.starCanvas.onmouseup = function(evemt) {alert("up");};
 	this.cont = this.starCanvas.getContext("2d");
+	this.createLineImages(divEl, palya);
 	this.drawStar();
 	
 	this.centerD = document.createElement("canvas");
@@ -140,6 +156,15 @@ Star.prototype.inExplosion =function(x,y,r) {
 	return false;
 };
 Star.prototype.go = function() {
+    this.linesPhase += (this.charge/1000);
+    if (Math.round(this.linesPhase)>this.lastLinesPhase) {
+        this.linesImg[this.lastLinesPhase].style.display="none";
+        this.lastLinesPhase = (this.lastLinesPhase+1) % (this.linesImg.length);
+        if (this.linesPhase>this.linesImg.length-1) {
+            this.linesPhase -= this.linesImg.length;
+        }
+        this.linesImg[this.lastLinesPhase].style.display="block";
+    }
 	if (this.state==CHARGE) {
 	    if (this.palya.energiaCsik.energia>=10) {
 			this.doCharge();
